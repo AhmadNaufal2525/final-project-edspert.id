@@ -9,6 +9,7 @@ class ExerciseResultScreen extends StatefulWidget {
 }
 
 class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
+  String score = '100';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +20,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
           children: [
             TextButton.icon(
               onPressed: () {
-                 Navigator.of(context).pushNamed(Routes.homeScreen);
+                Navigator.of(context).pushNamed(Routes.homeScreen);
               },
               icon: const Icon(
                 Icons.close,
@@ -58,9 +59,9 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                     'Nilai kamu:',
                     style: TextStyle(color: Colors.white, fontSize: 13),
                   ),
-                  const Text(
-                    '100',
-                    style: TextStyle(color: Colors.white, fontSize: 96),
+                  Text(
+                    score,
+                    style: const TextStyle(color: Colors.white, fontSize: 96),
                   ),
                 ],
               ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class QuizNumber extends StatelessWidget {
+class QuestionNumberWidget extends StatelessWidget {
   final String number;
   final bool isSelected;
   final bool isKumpulin;
-  const QuizNumber({super.key, required this.number, required this.isSelected, required this.isKumpulin});
+  const QuestionNumberWidget({super.key, required this.number, required this.isSelected, required this.isKumpulin});
 
   @override
   Widget build(BuildContext context) {
