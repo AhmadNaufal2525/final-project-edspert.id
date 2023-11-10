@@ -1,4 +1,10 @@
+import 'dart:io';
+
+import 'package:course_app_edspert_id/presentation/routes/routes.dart';
+import 'package:course_app_edspert_id/src/utils/colors.dart';
+import 'package:course_app_edspert_id/src/utils/margins.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -8,10 +14,30 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+  final ImagePicker picker = ImagePicker();
   String? selectedGender;
+  XFile? image;
+  Future<void> pickImageFromGallery() async {
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        image = pickedImage;
+      });
+    }
+  }
+
+  Future<void> captureImageFromCamera() async {
+    final capturedImage = await picker.pickImage(source: ImageSource.camera);
+    if (capturedImage != null) {
+      setState(() {
+        image = capturedImage;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
@@ -26,15 +52,89 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           icon: const Icon(Icons.arrow_back_ios),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.all(16),
+      body: Padding(
+        padding: Margins.paddingPage,
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
                 'Data Diri',
                 style: TextStyle(fontSize: 20, color: Colors.black),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text("Pilih Gambar"),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ListTile(
+                              leading: const Icon(Icons.photo_library),
+                              title: const Text('Gallery'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                pickImageFromGallery();
+                              },
+                            ),
+                            ListTile(
+                              leading: const Icon(Icons.photo_camera),
+                              title: const Text('Camera'),
+                              onTap: () {
+                                Navigator.pop(context);
+                                captureImageFromCamera();
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Stack(
+                  children: [
+                    Center(
+                      child: image != null
+                          ? CircleAvatar(
+                              radius: 40,
+                              backgroundImage: FileImage(
+                                File(image!.path),
+                              ),
+                            )
+                          : const CircleAvatar(
+                              radius: 40,
+                              child: Icon(
+                                Icons.image,
+                                size: 30,
+                              ),
+                            ),
+                    ),
+                    Positioned(
+                      left: 60,
+                      bottom: 0,
+                      right: 0,
+                      top: 50,
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: AppColors.titleColor,
+                            radius: 12,
+                            child: const Icon(
+                              Icons.add,
+                              size: 16,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 20,
@@ -122,6 +222,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   hintText: 'contoh: SMAN 1 Bandung',
                   hintStyle: TextStyle(fontSize: 16),
                 ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.profileScreen);
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(370, 50),
+                  backgroundColor: AppColors.primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      20.0,
+                    ),
+                  ),
+                ),
+                child: const Text('Update'),
               ),
             ],
           ),

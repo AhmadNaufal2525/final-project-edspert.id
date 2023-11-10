@@ -199,7 +199,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 30,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                         Navigator.pushReplacementNamed(context, Routes.loginScreen);
+                      },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(390, 50),
                         backgroundColor: AppColors.whiteColor,
