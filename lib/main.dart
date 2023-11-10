@@ -2,10 +2,8 @@ import 'package:course_app_edspert_id/presentation/routes/routes.dart';
 import 'package:course_app_edspert_id/presentation/screen/auth/login_screen.dart';
 import 'package:course_app_edspert_id/presentation/screen/auth/register_screen.dart';
 import 'package:course_app_edspert_id/presentation/screen/auth/splash_screen.dart';
-import 'package:course_app_edspert_id/presentation/screen/course/course_list/all_course_list_screen.dart';
 import 'package:course_app_edspert_id/presentation/screen/course/exercise/exercise_result_screen.dart';
 import 'package:course_app_edspert_id/presentation/screen/course/exercise/exercise_screen.dart';
-import 'package:course_app_edspert_id/presentation/screen/course/exercise_list/exercise_list_screen.dart';
 import 'package:course_app_edspert_id/presentation/screen/diskusi/diskusi_screen.dart';
 import 'package:course_app_edspert_id/presentation/screen/home/home_screen.dart';
 import 'package:course_app_edspert_id/presentation/screen/profile/edit_profile_screen.dart';
@@ -43,9 +41,7 @@ class MyApp extends StatelessWidget {
         Routes.splashScreen: (context) => const SplashScreen(),
         Routes.loginScreen: (context) => const LoginScreen(),
         Routes.registerScreen: (context) => const RegisterScreen(),
-        Routes.homeScreen: (context) => const HomeScreen(),
-        Routes.listAllCourseScreen: (context) => const AllCourseListScreen(),
-        Routes.exerciseListScreen: (context) => ExerciseListScreen(),
+        Routes.homeScreen: (context) => HomeScreen(),
         Routes.exerciseScreen: (context) => const ExerciseScreen(),
         Routes.resultScreen:(context) => const ExerciseResultScreen(),
         Routes.profileScreen:(context) => const ProfileScreen(),
