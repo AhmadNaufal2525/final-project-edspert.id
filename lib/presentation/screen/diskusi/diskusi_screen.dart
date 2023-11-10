@@ -13,6 +13,7 @@ class DiskusiScreen extends StatefulWidget {
 class _DiskusiScreenState extends State<DiskusiScreen> {
   @override
   Widget build(BuildContext context) {
+    final mediaQueryData = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
         shape: const RoundedRectangleBorder(
@@ -24,7 +25,8 @@ class _DiskusiScreenState extends State<DiskusiScreen> {
         backgroundColor: AppColors.primaryColor,
         title: Text(
           'Diskusi Soal',
-          style: TextStyle(color: AppColors.whiteColor, fontWeight: FontWeight.w500),
+          style: TextStyle(
+              color: AppColors.whiteColor, fontWeight: FontWeight.w500),
         ),
         automaticallyImplyLeading: false,
         elevation: 0,
@@ -78,9 +80,12 @@ class _DiskusiScreenState extends State<DiskusiScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: SizedBox(
-          height: 80,
+      bottomNavigationBar: Transform.translate(
+        offset: Offset(
+          0.0,
+          -1 * mediaQueryData.viewInsets.bottom,
+        ),
+        child: BottomAppBar(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -96,9 +101,9 @@ class _DiskusiScreenState extends State<DiskusiScreen> {
                   ),
                   child: IconButton(
                     onPressed: () {},
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.add,
-                      color: Colors.blue,
+                      color: AppColors.primaryColor,
                     ),
                   ),
                 ),
@@ -130,9 +135,9 @@ class _DiskusiScreenState extends State<DiskusiScreen> {
                       fillColor: const Color(0xffF6F6F6),
                       filled: true,
                       suffixIcon: IconButton(
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.camera_alt,
-                          color: Colors.blue,
+                          color: AppColors.primaryColor,
                         ),
                         onPressed: () {},
                       ),
@@ -144,9 +149,9 @@ class _DiskusiScreenState extends State<DiskusiScreen> {
                 ),
                 IconButton(
                   onPressed: () {},
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.send,
-                    color: Colors.blue,
+                    color: AppColors.primaryColor,
                   ),
                 ),
               ],
