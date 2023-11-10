@@ -1,5 +1,6 @@
 import 'package:course_app_edspert_id/presentation/routes/routes.dart';
 import 'package:course_app_edspert_id/presentation/screen/auth/widgets/custom_rounded_button_widget.dart';
+import 'package:course_app_edspert_id/presentation/screen/home/widgets/bottom_navigation_widget.dart';
 import 'package:course_app_edspert_id/src/utils/colors.dart';
 import 'package:course_app_edspert_id/src/utils/margins.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +73,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     Navigator.pushNamed(context, Routes.registerScreen);
                   },
-                  icon: const Icon(Icons.app_registration_sharp),
+                  icon: const Icon(
+                    Icons.person_add_alt_1,
+                    size: 20,
+                  ),
                   label: const Text('Daftar Akun'),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(350, 50),
@@ -99,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     Text(
-                      "Masuk dengan",
+                      "atau",
                       style: TextStyle(
                         color: AppColors.dividerColor,
                       ),
@@ -124,7 +128,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustomRoundedButtonWidget(
                       image: 'assets/icons/google-logo.png',
                       onPressed: () {
-                         Navigator.pushNamed(context, Routes.homeScreen);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const BottomNavigationWidget(),
+                          ),
+                        );
                       },
                       label: 'Masuk dengan Google',
                       backgroundColor: AppColors.whiteColor,
@@ -137,8 +147,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       image: 'assets/icons/apple-logo.png',
                       backgroundColor: AppColors.titleColor,
                       onPressed: () {
-                         Navigator.pushNamed(context, Routes.homeScreen);
-                      }, 
+                         Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const BottomNavigationWidget(),
+                          ),
+                        );
+                      },
                       label: 'Masuk dengan Apple ID',
                       textColor: AppColors.whiteColor,
                     ),
