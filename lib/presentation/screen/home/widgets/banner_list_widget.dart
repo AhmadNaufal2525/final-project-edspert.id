@@ -1,13 +1,10 @@
+import 'package:course_app_edspert_id/src/data/models/banner_response_model.dart';
 import 'package:course_app_edspert_id/src/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class BannerListWidget extends StatelessWidget {
-  final List<String> bannerList = [
-    'assets/images/information.png',
-    'assets/images/information.png',
-    'assets/images/information.png',
-  ];
-  BannerListWidget({super.key});
+  final List<BannerDataModel> bannerList;
+  const BannerListWidget({super.key, required this.bannerList});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +34,7 @@ class BannerListWidget extends StatelessWidget {
                 margin: const EdgeInsets.only(right: 16.0),
                 child: Row(
                   children: [
-                    Image.asset(banner, width: 340),
+                    Image.network(banner.eventImage, width: 340),
                   ],
                 ),
               );
