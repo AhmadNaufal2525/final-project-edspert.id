@@ -7,4 +7,5 @@ class APIUrl {
   static String get eventBanner => '/event/list?limit=5';
   static String get exercisesPath => '/exercise/data_exercise';
   static String get questionsPath => '/exercise/kerjakan';
+  static String get editProfilePath => '/users/update';
 }
